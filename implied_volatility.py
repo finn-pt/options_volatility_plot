@@ -43,7 +43,7 @@ def est_iv(r: float, S: float, C: float, K: float, T: float, call_or_put: str) -
 
     # Options that do not converge within 10 iterations are likely far enough
     # removed from the assumptions of the Black-Scholes model that they should
-    # be excluded. These columns with None will later be reomved
+    # be excluded. These columns with None will later be removed
     return None
 
 def Black_Scholes(r: float, S: float, sigma: float, K: float, T: float, 

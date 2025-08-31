@@ -1,21 +1,26 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+import plotly.graph_objects as plt
 
 def plot(data: pd.DataFrame):
-    # Extract data
-    T = data['T']
-    K = data['strike']
-    IV = data['IV']
+    """
+    Generates a 3d plot compatible with streamlit
 
-    # Setup plot
-    fig = plt.figure(figsize = (14, 9))
-    ax = fig.add_subplot(111, projection = '3d')
-    surface = ax.plot_trisurf(T, K, IV, cmap = plt.cm.viridis, linewidth = 0.1)
-    fig.colorbar(surface, shrink = 0.5, aspect = 5)
+    Paramters:
+        data (pd.DataFrame) - the data to be plotted
 
-    ax.set_xlabel("Time to Expiration in Years")
-    ax.set_ylabel("Strike Price")
-    ax.set_zlabel("Implied Volatility")
+    Returns: fig - a 3d plot which can be interacted with in streamlit
+    """
+    fig = plt.Figure(
+        data = [plt.Mesh3d(x = data["T"], y = data["strike"], 
+        z = data["IV"], opacity = 0.85, intensity = data["IV"], 
+        colorscale = "Viridis")]
+        )
 
+    fig.update_layout(
+        scene=dict(
+            xaxis_title = "Time to Expiration (Years)",
+            yaxis_title = "Strike Price ($)",
+            zaxis_title = "Implied Volatility"
+        )
+    )
     return fig

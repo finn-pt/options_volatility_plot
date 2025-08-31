@@ -10,4 +10,4 @@ if __name__ == "__main__":
     ticker = st.text_input("Enter Ticker")
     if st.button("Display Plot"):
         df = get_option_chain(ticker, option_type)
-        st.pyplot(plot(df))
+        st.plotly_chart(plot(df))
