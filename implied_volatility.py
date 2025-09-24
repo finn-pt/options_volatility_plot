@@ -5,7 +5,7 @@ from scipy.stats import norm
 def est_iv(r: float, S: float, C: float, K: float, T: float, call_or_put: str) -> float:
     """
     Uses Newton's Method to estimate implied volatility (via the Black-Scholes
-    formula) to within INSERT with INSERT
+    formula) to within 0.0001 of its true value
 
     Paramaters:
         r (float) - risk free rate
